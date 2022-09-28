@@ -1,0 +1,686 @@
+ScreenManagement:
+   Login:
+   Home:
+      id: home_screen
+   Help:
+   Optimization:
+   History:
+   Register:
+      id: register
+   NewUser:
+
+<Login>:
+   id: login
+   name: 'Login'
+   FloatLayoutEx:
+
+<FloatLayoutEx>:
+   id: float
+   canvas.before:
+      Color:
+         rgba: 1,1,1,1
+      Rectangle:
+         pos: self.pos
+         size: self.size
+
+   Image:
+      source: r"images/horizontal_logo.png"
+      allow_stretch: True
+      keep_ratio: False
+      size_hint: None, None
+      width: "200dp"
+      height: "100dp"
+      pos_hint: {"center_x": .5, "y": .85}
+   Label:
+      id: error_label
+      text: root.error
+      font_size: 50
+      color: 1,0,0,1
+      pos_hint: {"center_x": .5, "y": .3}
+
+   Label:
+      text: "User"
+      color: 0,0,0,1
+      pos_hint: {"x": -.23, "y": .18}
+   Label:
+      id: label
+      text: "Password"
+      color: 0,0,0,1
+      pos_hint: {"x": -.19, "y": -.023}
+
+   # Sin logica de base de datos
+   Button:
+      pos_hint: {"center_x": .5,"y":.10}
+      size_hint: None, None
+      allow_stretch: True
+      keep_ratio: False
+      width: "400dp"
+      height: "80dp"
+      background_normal:r'images/login.png'
+      background_down:r'images/login.png'
+      #on_release:app.root.current = 'home'
+      on_press: root.login_button()
+
+   Button:
+      pos_hint: {"center_x": .5,"y":-0.01}
+      size_hint: None, None
+      allow_stretch: True
+      keep_ratio: False
+      width: "400dp"
+      height: "80dp"
+      background_normal:r'images/register.png'
+      background_down:r'images/register.png'
+      on_release:app.root.current = 'register_user'
+
+<Home>:
+   name: "home"
+   BothBars:
+   FloatLayout:
+      Label:
+         text: "Total consumption this week"
+         font_size:self.width/15
+         color: 0,0,0,1
+         pos_hint: {"center_x": .5,"center_y": .8}
+
+      Label:
+         text: root.totalwater
+         font_size: 50
+         color: 0,0,0,1
+         pos_hint: {"center_x": .5,"center_y": .3}
+      
+      Label:
+         text: "Recommended consumption: 966.4"
+         font_size: 40
+         color: 0,0,0,1
+         pos_hint: {"center_x": .5,"center_y": .2}
+
+      Image:
+         pos_hint: {"x": -.39,"y": .13}
+         size_hint: None, None
+         width: "800dp"
+         height: "600dp"
+         source: "images/blue_sq.png"
+         
+      
+      BoxLayout:
+         size_hint: 1, .4
+         
+
+         pos_hint:{"center_x": .5, "center_y":.6 }
+         
+         MainWindow:
+
+<BottomBar>:
+   canvas.before:
+      Color:
+         rgba: 1,1,1,1
+      Rectangle:
+         pos: self.pos
+         size: self.size
+   Image:
+      pos_hint: {"center_x": .5,"y":-0.06}
+      size_hint: None, None
+      allow_stretch: True
+      keep_ratio: False
+      width: "400dp"
+      height: "150dp"
+      source: r'images/wave.png'
+   Button:
+      on_release:app.root.current = 'home'
+      pos_hint: {"center_x": .5,"y":-0.04}
+      allow_stretch: True
+      keep_ratio: False
+      size_hint: None, None
+      width: "200dp"
+      height: "120dp"
+      background_normal:r'images/house_icon.png'
+      background_down:r'images/house_icon.png'
+
+   Button:
+      on_release:app.root.current = 'optimization'
+      pos_hint: {"center_x": .3,"y":-0.009}
+      allow_stretch: True
+      keep_ratio: False
+      size_hint: None, None
+      width: "90dp"
+      height: "80dp"
+      background_normal:r'images/news_icon.png'
+      background_down:r'images/news_icon.png'
+
+   Button:
+      on_release:app.root.current = 'help'
+      pos_hint: {"center_x": .9,"y":-0.01}
+      allow_stretch: True
+      keep_ratio: False
+      size_hint: None, None
+      width: "100dp"
+      height: "90dp"
+      background_normal:r'images/help_icon.png'
+      background_down:r'images/help_icon.png'
+
+   Button:
+      on_release:app.root.current = 'history'
+      pos_hint: {"center_x": .1,"y":-0.009}
+      allow_stretch: False
+      keep_ratio: True
+      size_hint: None, None
+      width: "85dp"
+      height: "85dp"
+      background_normal:r'images/history_icon.png'
+      background_down:r'images/history_icon.png'
+
+   Button:
+      on_release:app.root.current = 'register'
+      pos_hint: {"center_x": .70,"y":-0.01}
+      allow_stretch: False
+      keep_ratio: False
+      size_hint: None, None
+      width: "90dp"
+      height: "90dp"
+      background_normal:r'images/register_icon.png'
+      background_down:r'images/register_icon.png'
+
+<TopBar>:
+   Image:
+      pos_hint: {"center_x": .5,"y":.75}
+      size_hint: None, None
+      width: "7800dp"
+      height: "300dp"
+      source: r'images/franja.png'
+   Button:
+      on_release:app.root.current = 'Login'
+      text: "Exit"
+      background_color: 0.255,0.412,0.882,1
+      pos_hint: {"center_x": .85, "y":.93}
+      size_hint: None, None
+      width: "100dp"
+      height: "50dp"
+
+
+<BothBars>:
+   BottomBar:
+   TopBar:
+
+<Optimization>
+   name: 'optimization'
+   BothBars:
+   GridLayout:
+      canvas.before:
+         Color:
+            rgba: 0,0,1,1
+         Rectangle:
+            pos:self.pos
+            size: self.size
+      spacing: 10
+      pos_hint: {"center_x": .5,"y":.2}
+      size_hint: 1,.6
+      row_default_height: 20
+      cols: 2
+      rows: 4
+      Label:
+         size_hint: .5,1
+         text: "Shower"
+         color: 0,0,0,1
+         canvas.before:
+            Color:
+               rgba: 1,1,1,1
+            Rectangle:
+               pos:self.pos
+               size: self.size
+      BoxLayout:
+         spacing: 10
+         orientation: 'vertical'
+         Label: 
+            text: root.showerValue
+            font_size: self.width/20
+            color: 0,0,0,1
+            canvas.before:
+               Color:
+                  rgba: 1,1,1,1
+               Rectangle:
+                  pos:self.pos
+                  size: self.size
+         Label:
+            font_size:self.width/20
+            text: "Try turning off the shower while\n soping up and try using songs\n to measure your time bathing"
+            color: 0,0,0,1
+            canvas.before:
+               Color:
+                  rgba: 1,1,1,1
+               Rectangle:
+                  pos:self.pos
+                  size: self.size
+
+      Label:
+         size_hint: .5,1
+         text: "Laundry"
+         color: 0,0,0,1
+         canvas.before:
+            Color:
+               rgba: 1,1,1,1
+            Rectangle:
+               pos:self.pos
+               size: self.size
+      BoxLayout:
+         spacing: 10
+         orientation: 'vertical'
+         Label: 
+            text: root.laundryValue
+            font_size: self.width/20
+            color: 0,0,0,1
+            canvas.before:
+               Color:
+                  rgba: 1,1,1,1
+               Rectangle:
+                  pos:self.pos
+                  size: self.size
+         Label:
+            font_size:self.width/20
+            text: "Try making full loads when posible as\n well as using your clothes longer\n before cleaning them"
+            color: 0,0,0,1
+            canvas.before:
+               Color:
+                  rgba: 1,1,1,1
+               Rectangle:
+                  pos:self.pos
+                  size: self.size
+           
+      Label:
+         size_hint: .5,1
+         text: "Toilet Flushes"
+         color: 0,0,0,1
+         canvas.before:
+            Color:
+               rgba: 1,1,1,1
+            Rectangle:
+               pos:self.pos
+               size: self.size
+      BoxLayout:
+         spacing: 10
+         orientation: 'vertical'
+         Label: 
+            text: root.toiletValue
+            font_size: self.width/20
+            color: 0,0,0,1
+            canvas.before:
+               Color:
+                  rgba: 1,1,1,1
+               Rectangle:
+                  pos:self.pos
+                  size: self.size
+         Label:
+            text: "Try using buckets to flush,\n this is far more efficient."
+            color: 0,0,0,1
+            canvas.before:
+               Color:
+                  rgba: 1,1,1,1
+               Rectangle:
+                  pos:self.pos
+                  size: self.size
+
+      Label:
+         size_hint: .5,1
+         text: "Irrigation"
+         color: 0,0,0,1
+         canvas.before:
+            Color:
+               rgba: 1,1,1,1
+            Rectangle:
+               pos:self.pos
+               size: self.size
+      BoxLayout:
+         spacing: 10
+         orientation: 'vertical'
+         Label: 
+            text: root.irrigationValue
+            font_size: self.width/20
+            color: 0,0,0,1
+            canvas.before:
+               Color:
+                  rgba: 1,1,1,1
+               Rectangle:
+                  pos:self.pos
+                  size: self.size
+         Label:
+            text: "Try to water your plants after\n dark to avoid evaporation."
+            color: 0,0,0,1
+            canvas.before:
+               Color:
+                  rgba: 1,1,1,1
+               Rectangle:
+                  pos:self.pos
+                  size: self.size 
+   Label: 
+      font_size:self.width/15
+      text: "Last week consumption"
+      pos_hint: {"center_x": .5, "y": .35}
+      color: 0,0,0,1
+
+<History>
+   name: 'history'
+   BothBars:
+
+<Register>:
+   name: 'register'
+   BothBars:
+
+   FloatLayout:
+      Image:
+         source: "Images/ToiletFlushes.png"
+         allow_stretch: True
+         keep_ratio: False
+         size_hint: None, None
+         width: "160dp"
+         height: "60dp"
+         pos_hint: {"x": .01, "y": .6}
+      Image:
+         source: "Images/Laundry.png"
+         allow_stretch: True
+         keep_ratio: False
+         size_hint: None, None
+         width: "160dp"
+         height: "60dp"
+         pos_hint: {"x": .01, "y": .5}
+      Image:
+         source: "Images/watering.png"
+         allow_stretch: True
+         keep_ratio: False
+         size_hint: None, None
+         width: "160dp"
+         height: "70dp"
+         pos_hint: {"x": .01, "y": .3}
+      Image:
+         source: "Images/shower.png"
+         allow_stretch: True
+         keep_ratio: False
+         size_hint: None, None
+         width: "170dp"
+         height: "70dp"
+         pos_hint: {"x": .05, "y": .8}
+      BoxLayout:
+         pos_hint: {"x": .55, "y": .81}
+         size_hint: .2, .1
+         GridLayout:
+            pos: 0, 0
+            size_hint: .5, .7
+            cols: 2
+            Label:
+               text: root.numshower
+               color: 0, 0, 0, 1
+            GridLayout:
+               size_hint: .5, .7
+               rows: 2
+               Button:
+                  background_color: 0.255,0.412,0.882,1
+                  text: "+"
+                  size_hint: .5, .5
+                  on_press: root.counter_showerplus()
+               Button:
+                  background_color: 0.255,0.412,0.882,1
+                  text: "-"
+                  size_hint: .5, .5
+                  on_press: root.counter_showerminus()
+      BoxLayout:
+         pos_hint: {"x": .55, "y": .51}
+         size_hint: .2, .1
+         GridLayout:
+            pos: 0, 0
+            size_hint: .5, .7
+            cols: 2
+            Label:
+               text: root.numwash
+               color: 0, 0, 0, 1
+            GridLayout:
+               size_hint: .5, .7
+               rows: 2
+               Button:
+                  background_color: 0.255,0.412,0.882,1
+                  text: "+"
+                  size_hint: .5, .5
+                  on_press: root.counter_washplus()
+               Button:
+                  background_color: 0.255,0.412,0.882,1
+                  text: "-"
+                  size_hint: .5, .5
+                  on_press: root.counter_washminus()
+      BoxLayout:
+         pos_hint: {"x": .55, "y": .61}
+         size_hint: .2, .1
+         GridLayout:
+            pos: 0, 0
+            size_hint: .5, .7
+            cols: 2
+            Label:
+               text: root.numtoilet
+               color: 0, 0, 0, 1
+            GridLayout:
+               size_hint: .5, .7
+               rows: 2
+               Button:
+                  background_color: 0.255,0.412,0.882,1
+                  text: "+"
+                  size_hint: .5, .5
+                  on_press: root.counter_toiletplus()
+               Button:
+                  background_color: 0.255,0.412,0.882,1
+                  text: "-"
+                  size_hint: .5, .5
+                  on_press: root.counter_toiletminus()
+      BoxLayout:
+         pos_hint: {"x": .55, "y": .31}
+         size_hint: .2, .1
+         GridLayout:
+            pos: 0, 0
+            size_hint: .5, .7
+            cols: 2
+            Label:
+               text: root.numwatering
+               color: 0, 0, 0, 1
+            GridLayout:
+               size_hint: .5, .7
+               rows: 2
+               Button:
+                  background_color: 0.255,0.412,0.882,1
+                  text: "+"
+                  size_hint: .5, .5
+                  on_press: root.counter_wateringplus()
+               Button:
+                  background_color: 0.255,0.412,0.882,1
+                  text: "-"
+                  size_hint: .5, .5
+                  on_press: root.counter_wateringminus()
+      GridLayout:
+         cols:2
+         rows:3
+         pos_hint: {"x": .05, "y": .7}
+         size_hint: .4, .1
+         CheckBox:
+            group: "pressure"
+            on_active: root.checkbox_click(self, self.active, "high")
+         Label:
+            text: "High pressure"
+            color: 0,0,0,1
+         CheckBox:
+            group: "pressure"
+            on_active: root.checkbox_click(self, self.active, "medium")
+         Label:
+            text: "Medium pressure"
+            color: 0,0,0,1
+         CheckBox:
+            group: "pressure"
+            on_active: root.checkbox_click(self, self.active, "low")
+         Label:
+            text: "Low pressure"
+            color: 0,0,0,1
+      Label:
+         id: output_label
+         text: ""
+
+      GridLayout:
+         cols:2
+         rows:2
+         pos_hint: {"x": .05, "y": .4}
+         size_hint: .4, .1
+         CheckBox:
+            group: "load"
+            on_active: root.checkbox_kg_click(self, self.active, "5")
+         Label:
+            text: "5 kg"
+            color: 0,0,0,1
+         CheckBox:
+            group: "load"
+            on_active: root.checkbox_kg_click(self, self.active, "7")
+         Label:
+            text: "7 kg"
+            color: 0,0,0,1
+      Label:
+         id: output_label_kg
+         text: ""
+
+      GridLayout:
+         cols:2
+         rows:3
+         pos_hint: {"x": .05, "y": .2}
+         size_hint: .4, .1
+         CheckBox:
+            group: "watering"
+            on_active: root.checkbox_water_click(self, self.active, "high")
+         Label:
+            text: "High pressure"
+            color: 0,0,0,1
+         CheckBox:
+            group: "watering"
+            on_active: root.checkbox_water_click(self, self.active, "medium")
+         Label:
+            text: "Medium pressure"
+            color: 0,0,0,1
+         CheckBox:
+            group: "watering"
+            on_active: root.checkbox_water_click(self, self.active, "low")
+         Label:
+            text: "Low pressure"
+            color: 0,0,0,1
+      Label:
+         id: output_water_label
+         text: ""
+      Button:
+         pos_hint: {"x": .65, "y": .15}
+         allow_stretch: True
+         keep_ratio: False
+         size_hint: None, None
+         width: "120dp"
+         height: "50dp"
+         background_normal:r'images/submit.png'
+         background_down:r'images/submit.png'
+         on_press: root.add_data()
+
+<Help>:
+   name: 'help'
+   BothBars:
+
+   Label:
+      text:"How does Atemoc Works?"
+      color: 0,0,0,1
+      pos_hint: {"center_x": .5, "y": .38}
+
+   Label:
+      text: "Water is probably the most vital resource\n for life currently due to the fact\n that most of our day-to-day\n activities require it. However, most people don’t\n seem to realize that we are running\n out of clean water. About 780 million\n people lack basic drinking water access,\n more than one of every 10 people\n on the planet. Furthermore, Every day,\n more than 800 children under the age\n of five die from diarrhea attributed to\n poor water and sanitation. According to\n The World Health Organization a person\n needs about 100 liters of water a\n day to satisfy their needs. However,\n in Mexico, people use about 360\n liters of water per day.\n Many people want to do and be better,\n but we know that it’s hard to change your\n habits, that’s why we created Atemoc.\n To help you in this process towards\n a better future. Atemoc is a virtual\n tool that helps you keep track of\n your weekly usage of water, while also\n providing you with tips and recommendations on\n how to improve your habits. Help us to\n help you reach that 100 L recommended daily limit."
+      color: 0,0,0,1
+      pos_hint: {"center_x": .5, "y": 0}
+
+<NewUser>:
+   name: 'register_user'
+   FloatLayout:
+      canvas.before:
+         Color:
+            rgba: 1,1,1,1
+         Rectangle:
+            pos: self.pos
+            size: self.size
+      Image:
+         source: r"images/horizontal_logo.png"
+         allow_stretch: True
+         keep_ratio: False
+         size_hint: None, None
+         width: "200dp"
+         height: "100dp"
+         pos_hint: {"center_x": .5, "y": .85}
+      Label:
+         text: "Register and save the planet"
+         font_size: 50
+         pos_hint: {"center_x": .5, "y": .3}
+         color: 0,0,0,1
+      Label:
+         id: warning_label
+         text: root.label_warning
+         font_size: 35
+         color: 1,0,0,1
+         pos_hint: {"center_x": .5, "center_y": .15}
+      Label:
+         text: "Name"
+         font_size: 50
+         pos_hint: {"x": -.30, "y": .18}
+         color: 0,0,0,1
+      TextInput:
+         id: name_field
+         size_hint: None, None
+         size: "200dp", "40dp"
+         multiline: False
+         pos_hint: {"x": .4, "y": .655}
+         color: 0,0,0,1
+      Label:
+         text: "Last Name"
+         font_size: 50
+         pos_hint: {"x": -.30, "y": .10}
+         color: 0,0,0,1
+      TextInput:
+         id: last_name_field
+         size_hint: None, None
+         size: "200dp", "35dp"
+         multiline: False
+         pos_hint: {"x": .4, "y": .575}
+         color: 0,0,0,1
+      Label:
+         text: "User Name"
+         font_size: 50
+         pos_hint: {"x": -.30, "y": .02}
+         color: 0,0,0,1
+      TextInput:
+         id: user_name_field
+         size_hint: None, None
+         size: "200dp", "35dp"
+         multiline: False
+         pos_hint: {"x": .4, "y": .5}
+         color: 0,0,0,1
+      Label:
+         text: "Password"
+         font_size: 50
+         pos_hint: {"x": -.30, "y": -.06}
+         color: 0,0,0,1
+      TextInput:
+         id: password_field
+         size_hint: None, None
+         size: "200dp", "35dp"
+         multiline: False
+         pos_hint: {"x": .4, "y": .42}
+         color: 0,0,0,1
+      Button:
+         pos_hint: {"center_x": .5, "y": .25}
+         allow_stretch: True
+         keep_ratio: False
+         size_hint: None, None
+         width: "300dp"
+         height: "70dp"
+         background_normal:r'images/register.png'
+         background_down:r'images/register.png'
+         on_press: root.newuser_button()
+      Button:
+         pos_hint: {"center_x": .5, "y": .15}
+         allow_stretch: True
+         keep_ratio: False
+         size_hint: None, None
+         width: "300dp"
+         height: "70dp"
+         background_normal:r'images/back_to_login.png'
+         background_down:r'images/back_to_login.png'
+         on_release:app.root.current = 'login'
